@@ -1,59 +1,47 @@
 let attempts = 0;
 const maxAttempts = 4;
-let verified = false;
 
-document.addEventListener("DOMContentLoaded", () => {
-  generateCode();
-});
-
+// Generate code once per session
 function generateCode() {
-  if (verified) return; // 🔴 do not regenerate after success
+  let code = sessionStorage.getItem("challengeCode");
 
-  const codeBox = document.getElementById("codeBox");
-  if (!codeBox) return;
+  if (!code) {
+    code = Math.floor(1000 + Math.random() * 9000).toString();
+    sessionStorage.setItem("challengeCode", code);
+  }
 
-  const code = Math.floor(1000 + Math.random() * 9000);
-  codeBox.innerText = code;
+  document.getElementById("codeBox").innerText = code;
 }
 
 function checkCode(event) {
-  if (event) event.preventDefault(); // 🔴 stop page reload
+  event.preventDefault(); // 🚨 STOP PAGE RELOAD
 
-  const inputField = document.getElementById("userInput");
-  const codeBox = document.getElementById("codeBox");
+  const input = document.getElementById("userInput").value.trim();
+  const correctCode = sessionStorage.getItem("challengeCode");
   const message = document.getElementById("message");
-  const button = document.querySelector("button");
   const card = document.getElementById("card");
+  const button = document.getElementById("verifyBtn");
 
-  if (!inputField || !codeBox) return;
-
-  const input = inputField.value.trim();
-  const correctCode = codeBox.innerText.trim();
-
-  // ✅ SUCCESS
   if (input === correctCode) {
-    verified = true;
     sessionStorage.setItem("verified", "true");
-
-    // redirect ONCE
-    window.location.assign("/");
+    window.location.replace("/main.html"); // clean redirect
     return;
   }
 
-  // ❌ FAILURE
   attempts++;
   message.innerText = `Incorrect code. Attempt ${attempts} of ${maxAttempts}`;
-  message.style.color = "#d9534f";
 
-  if (card) {
-    card.classList.remove("shake");
-    void card.offsetWidth;
-    card.classList.add("shake");
-  }
+  // Shake animation
+  card.classList.remove("shake");
+  void card.offsetWidth;
+  card.classList.add("shake");
 
   if (attempts >= maxAttempts) {
     message.innerText = "Too many failed attempts. Access locked.";
     button.disabled = true;
-    inputField.disabled = true;
+    document.getElementById("userInput").disabled = true;
   }
 }
+
+// Run once on page load
+document.addEventListener("DOMContentLoaded", generateCode);

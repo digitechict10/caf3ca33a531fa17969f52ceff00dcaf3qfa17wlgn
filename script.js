@@ -1,6 +1,9 @@
 function checkCode() {
-  const input = document.getElementById("userInput").value;
-  const correctCode = "7392";
+  const input = document.getElementById("userInput").value.trim();
+  const correctCode = document
+    .getElementById("codeBox")
+    .innerText
+    .trim();
 
   if (input === correctCode) {
     sessionStorage.setItem("verified", "true");

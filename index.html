@@ -7,21 +7,25 @@
 </head>
 <body>
 
-  <div class="container">
-    <h1>Security Code Challenge</h1>
-    <p>Please complete this step to continue.</p>
+  <div class="page">
+    <div class="container">
+      <h1>Security Code Challenge</h1>
+      <p class="subtitle">
+        Solve the following tasks to prove that you are human.
+      </p>
 
-    <div class="code-box" id="codeBox">7392</div>
+      <div class="code-box" id="codeBox">4322</div>
 
-    <input
-      type="text"
-      id="userInput"
-      placeholder="Enter the code above"
-    />
+      <input
+        type="text"
+        id="userInput"
+        placeholder="Please enter the code above"
+      />
 
-    <button onclick="checkCode()">Submit</button>
+      <button onclick="checkCode()">submit</button>
 
-    <p id="message"></p>
+      <p id="message"></p>
+    </div>
   </div>
 
   <script src="script.js"></script>

@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 html, body {
@@ -13,68 +13,86 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #3fa1da, #2c3e50);
+  background: #f5f7fa;
 }
 
 .container {
-  text-align: center;
-  color: #ffffff;
+  background: white;
   width: 100%;
   max-width: 420px;
-  padding: 20px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
 h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
-  font-weight: 300;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
 .subtitle {
-  font-size: 16px;
-  opacity: 0.9;
-  margin-bottom: 40px;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 25px;
 }
 
 .code-box {
-  background: #3fa1da;
-  color: #ffffff;
-  font-size: 36px;
-  padding: 30px 0;
-  border-radius: 10px;
-  margin-bottom: 30px;
+  background: #eef2f7;
+  border: 1px solid #d0d7e2;
+  font-size: 32px;
+  letter-spacing: 6px;
+  padding: 20px 0;
+  border-radius: 6px;
+  margin-bottom: 20px;
 }
 
 input {
   width: 100%;
-  padding: 14px;
-  font-size: 16px;
+  padding: 12px;
+  font-size: 15px;
   border-radius: 6px;
-  border: none;
-  margin-bottom: 20px;
+  border: 1px solid #ccd3df;
+  margin-bottom: 15px;
 }
 
 input:focus {
   outline: none;
+  border-color: #4c83ff;
 }
 
 button {
   width: 100%;
-  padding: 14px;
-  font-size: 16px;
-  background: #e74c3c;
+  padding: 12px;
+  font-size: 15px;
+  background: #4c83ff;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  text-transform: lowercase;
 }
 
-button:hover {
-  background: #c0392b;
+button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
 }
 
 #message {
-  margin-top: 15px;
-  font-size: 14px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: #d9534f;
+}
+
+/* Shake animation */
+.shake {
+  animation: shake 0.35s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-6px); }
+  100% { transform: translateX(0); }
 }

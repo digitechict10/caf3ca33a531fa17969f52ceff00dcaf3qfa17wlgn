@@ -2,27 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Security Code Challenge</title>
+  <title>Security Check</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <div class="page">
-    <div class="container">
-      <h1>Security Code Challenge</h1>
+    <div class="container" id="card">
+      <h1>Security Check</h1>
       <p class="subtitle">
-        Solve the following tasks to prove that you are human.
+        Please verify that you are human
       </p>
 
-      <div class="code-box" id="codeBox">4322</div>
+      <div class="code-box" id="codeBox">----</div>
 
       <input
         type="text"
         id="userInput"
-        placeholder="Please enter the code above"
+        placeholder="Enter the code shown above"
       />
 
-      <button onclick="checkCode()">submit</button>
+      <button onclick="checkCode()">Verify</button>
 
       <p id="message"></p>
     </div>

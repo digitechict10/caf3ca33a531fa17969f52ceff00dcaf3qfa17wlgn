@@ -10,9 +10,7 @@
   <div class="page">
     <div class="container" id="card">
       <h1>Security Check</h1>
-      <p class="subtitle">
-        Please verify that you are human
-      </p>
+      <p class="subtitle">Please verify that you are human</p>
 
       <div class="code-box" id="codeBox">----</div>
 
@@ -20,10 +18,19 @@
         type="text"
         id="userInput"
         placeholder="Enter the code shown above"
+        autocomplete="off"
+        inputmode="numeric"
+        maxlength="4"
       />
 
-      <button type="button" onclick="checkCode(event)">Verify</button>
-
+      <!-- IMPORTANT: id added here -->
+      <button
+        id="verifyBtn"
+        type="button"
+        onclick="checkCode(event)"
+      >
+        Verify
+      </button>
 
       <p id="message"></p>
     </div>

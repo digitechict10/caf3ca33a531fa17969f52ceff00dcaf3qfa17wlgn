@@ -16,4 +16,17 @@ function generateCode() {
   }
 }
 
-function checkCode(event
+function checkCode(event) {
+  if (event) event.preventDefault(); // stop reloads
+
+  const inputEl = document.getElementById("userInput");
+  const message = document.getElementById("message");
+  const card = document.getElementById("card");
+  const button = document.getElementById("verifyBtn");
+
+  const input = inputEl.value.trim();
+  const correctCode = sessionStorage.getItem("challengeCode");
+
+  if (input === correctCode) {
+    sessionStorage.setItem("verified", "true");
+    sessionStorage.

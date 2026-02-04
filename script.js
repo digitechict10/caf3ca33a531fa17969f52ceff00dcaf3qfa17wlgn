@@ -1,11 +1,14 @@
 let attempts = 0;
 const maxAttempts = 4;
+let verified = false;
 
 document.addEventListener("DOMContentLoaded", () => {
   generateCode();
 });
 
 function generateCode() {
+  if (verified) return; // 🔴 do not regenerate after success
+
   const codeBox = document.getElementById("codeBox");
   if (!codeBox) return;
 
@@ -13,38 +16,41 @@ function generateCode() {
   codeBox.innerText = code;
 }
 
-function checkCode() {
+function checkCode(event) {
+  if (event) event.preventDefault(); // 🔴 stop page reload
+
   const inputField = document.getElementById("userInput");
   const codeBox = document.getElementById("codeBox");
   const message = document.getElementById("message");
   const button = document.querySelector("button");
-  const card = document.getElementById("card"); // optional
+  const card = document.getElementById("card");
 
-  if (!inputField || !codeBox || !message) return;
+  if (!inputField || !codeBox) return;
 
   const input = inputField.value.trim();
   const correctCode = codeBox.innerText.trim();
 
-  // ✅ Success
+  // ✅ SUCCESS
   if (input === correctCode) {
+    verified = true;
     sessionStorage.setItem("verified", "true");
-    window.location.replace("/");
+
+    // redirect ONCE
+    window.location.assign("/");
     return;
   }
 
-  // ❌ Failure
+  // ❌ FAILURE
   attempts++;
   message.innerText = `Incorrect code. Attempt ${attempts} of ${maxAttempts}`;
   message.style.color = "#d9534f";
 
-  // Shake animation (only if card exists)
   if (card) {
     card.classList.remove("shake");
     void card.offsetWidth;
     card.classList.add("shake");
   }
 
-  // 🔒 Lockout
   if (attempts >= maxAttempts) {
     message.innerText = "Too many failed attempts. Access locked.";
     button.disabled = true;
